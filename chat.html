@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mentor Chat - Career Mentor AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Career Mentor AI</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html">Career Quiz</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="learning-path.html">Learning Path</a></li>
+                <li><a href="chat.html" class="active">AI Mentor</a></li>
+                <li><a href="job-trends.html">Job Trends</a></li>
+                <li><a href="resume.html">Resume Enhancer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Chat Section -->
+    <section class="chat-section">
+        <div class="container">
+            <div class="chat-container">
+                <!-- Chat Sidebar -->
+                <div class="chat-sidebar">
+                    <div class="sidebar-header">
+                        <h3><i class="fas fa-comments"></i> Chat History</h3>
+                        <button class="btn-icon" onclick="newChat()" title="New Chat">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="chat-list" id="chatList">
+                        <!-- Dynamic chat history -->
+                    </div>
+                    <div class="sidebar-footer">
+                        <div class="quick-actions">
+                            <h4>Quick Actions</h4>
+                            <button class="quick-action-btn"
+                                onclick="askQuestion('What career paths match my skills?')">
+                                <i class="fas fa-briefcase"></i> Career Suggestions
+                            </button>
+                            <button class="quick-action-btn" onclick="askQuestion('What skills should I learn?')">
+                                <i class="fas fa-book"></i> Skill Recommendations
+                            </button>
+                            <button class="quick-action-btn" onclick="askQuestion('How do I improve my resume?')">
+                                <i class="fas fa-file-alt"></i> Resume Tips
+                            </button>
+                            <button class="quick-action-btn" onclick="askQuestion('What are trending jobs?')">
+                                <i class="fas fa-chart-line"></i> Job Trends
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Main Area -->
+                <div class="chat-main">
+                    <div class="chat-header">
+                        <div class="chat-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="chat-info">
+                            <h3>AI Career Mentor</h3>
+                            <span class="status-indicator">
+                                <span class="status-dot"></span> Online - Ready to help 24/7
+                            </span>
+                        </div>
+                        <button class="btn-icon" onclick="clearChat()" title="Clear Chat">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="welcome-message">
+                            <div class="welcome-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h2>Hello! I'm Your AI Career Mentor</h2>
+                            <p>I'm here to help you with:</p>
+                            <div class="help-topics">
+                                <div class="help-topic">
+                                    <i class="fas fa-compass"></i>
+                                    <span>Career Path Guidance</span>
+                                </div>
+                                <div class="help-topic">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>Skill Development</span>
+                                </div>
+                                <div class="help-topic">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Learning Resources</span>
+                                </div>
+                                <div class="help-topic">
+                                    <i class="fas fa-briefcase"></i>
+                                    <span>Job Market Insights</span>
+                                </div>
+                            </div>
+                            <p class="help-prompt">Ask me anything about your career!</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <div class="suggested-questions" id="suggestedQuestions">
+                            <button class="suggestion-chip"
+                                onclick="askQuestion('What are the best tech careers in 2024?')">
+                                What are the best tech careers in 2024?
+                            </button>
+                            <button class="suggestion-chip"
+                                onclick="askQuestion('How do I transition to data science?')">
+                                How do I transition to data science?
+                            </button>
+                            <button class="suggestion-chip" onclick="askQuestion('What certifications should I get?')">
+                                What certifications should I get?
+                            </button>
+                        </div>
+                        <div class="chat-input-wrapper">
+                            <button class="btn-icon" title="Attach File">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <input type="text" id="chatInput" class="chat-input"
+                                placeholder="Ask me anything about your career..." onkeypress="handleKeyPress(event)">
+                            <button class="btn-icon btn-send" onclick="sendMessage()" title="Send Message">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="input-hint">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Tip: Be specific about your skills and interests for better recommendations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Career Mentor AI</h3>
+                    <p>Empowering students to make informed career decisions with AI-powered guidance and insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="quiz.html">Career Quiz</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="learning-path.html">Learning Path</a></li>
+                        <li><a href="chat.html">AI Mentor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="job-trends.html">Job Trends</a></li>
+                        <li><a href="resume.html">Resume Enhancer</a></li>
+                        <li><a href="#">Career Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <!-- <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Career Mentor AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/chat.js"></script>
+</body>
+
+</html>

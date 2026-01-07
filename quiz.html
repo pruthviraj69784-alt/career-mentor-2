@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Quiz - Career Mentor AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Career Mentor AI</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html" class="active">Career Quiz</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="learning-path.html">Learning Path</a></li>
+                <li><a href="chat.html">AI Mentor</a></li>
+                <li><a href="job-trends.html">Job Trends</a></li>
+                <li><a href="resume.html">Resume Enhancer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <div class="container">
+            <div class="quiz-header">
+                <h1><i class="fas fa-brain"></i> Smart Career Assessment Quiz</h1>
+                <p>Answer these questions to help our AI understand your interests, skills, and personality</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container" id="progressContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentQuestion">1</span> / <span id="totalQuestions">15</span>
+                </div>
+            </div>
+
+            <!-- Start Screen -->
+            <div class="quiz-start" id="quizStart">
+                <div class="start-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Ready to Discover Your Ideal Career?</h2>
+                    <p>This comprehensive assessment will analyze:</p>
+                    <ul class="start-features">
+                        <li><i class="fas fa-check"></i> Your technical and soft skills</li>
+                        <li><i class="fas fa-check"></i> Your interests and passions</li>
+                        <li><i class="fas fa-check"></i> Your personality type</li>
+                        <li><i class="fas fa-check"></i> Your work preferences</li>
+                        <li><i class="fas fa-check"></i> Your learning style</li>
+                    </ul>
+                    <div class="start-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>10-15 minutes</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>15 questions</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-large" onclick="startQuiz()">
+                        <i class="fas fa-play"></i> Start Assessment
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Questions -->
+            <div class="quiz-container" id="quizContainer" style="display: none;">
+                <div class="question-card" id="questionCard">
+                    <div class="question-header">
+                        <span class="question-category" id="questionCategory">Skills</span>
+                        <span class="question-number" id="questionNumber">Question 1</span>
+                    </div>
+                    <h3 class="question-text" id="questionText"></h3>
+                    <div class="options-container" id="optionsContainer"></div>
+                    <div class="quiz-navigation">
+                        <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="quiz-results" id="quizResults" style="display: none;">
+                <div class="results-header">
+                    <i class="fas fa-trophy"></i>
+                    <h2>Your Career Assessment Results</h2>
+                    <p>Based on your responses, here are your personalized career recommendations</p>
+                </div>
+
+                <div class="results-summary" id="resultsSummary">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+
+                <div class="results-actions">
+                    <a href="dashboard.html" class="btn btn-primary">
+                        <i class="fas fa-chart-line"></i> View Full Dashboard
+                    </a>
+                    <a href="learning-path.html" class="btn btn-secondary">
+                        <i class="fas fa-road"></i> Get Learning Path
+                    </a>
+                    <button class="btn btn-outline" onclick="retakeQuiz()">
+                        <i class="fas fa-redo"></i> Retake Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Career Mentor AI</h3>
+                    <p>Empowering students to make informed career decisions with AI-powered guidance and insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="quiz.html">Career Quiz</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="learning-path.html">Learning Path</a></li>
+                        <li><a href="chat.html">AI Mentor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="job-trends.html">Job Trends</a></li>
+                        <li><a href="resume.html">Resume Enhancer</a></li>
+                        <li><a href="#">Career Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Career Mentor AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html>

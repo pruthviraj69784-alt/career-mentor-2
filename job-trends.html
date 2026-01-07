@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Trends - Career Mentor AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Career Mentor AI</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html">Career Quiz</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="learning-path.html">Learning Path</a></li>
+                <li><a href="chat.html">AI Mentor</a></li>
+                <li><a href="job-trends.html" class="active">Job Trends</a></li>
+                <li><a href="resume.html">Resume Enhancer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Job Trends Section -->
+    <section class="trends-section">
+        <div class="container">
+            <div class="trends-header">
+                <div>
+                    <h1><i class="fas fa-trending-up"></i> Real-Time Job Market Trends</h1>
+                    <p>Explore trending careers, salary insights, and industry demand data</p>
+                </div>
+                <div class="trends-filters">
+                    <select id="industryFilter" class="filter-select">
+                        <option value="all">All Industries</option>
+                        <option value="tech">Technology</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Finance</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="engineering">Engineering</option>
+                    </select>
+                    <select id="timeFilter" class="filter-select">
+                        <option value="month">This Month</option>
+                        <option value="quarter" selected>This Quarter</option>
+                        <option value="year">This Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Trending Jobs Cards -->
+            <div class="trending-jobs">
+                <h2><i class="fas fa-fire"></i> Most In-Demand Careers Right Now</h2>
+                <div class="jobs-grid" id="trendingJobsGrid">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+
+            <!-- Salary Insights -->
+            <div class="salary-section">
+                <div class="salary-card">
+                    <h2><i class="fas fa-dollar-sign"></i> Salary Insights by Career</h2>
+                    <div style="height: 400px; position: relative;">
+                        <canvas id="salaryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Demand Chart -->
+            <div class="demand-section">
+                <div class="demand-card">
+                    <h2><i class="fas fa-chart-line"></i> Industry Growth Projections</h2>
+                    <p>Expected job growth over the next 5 years</p>
+                    <div style="height: 350px; position: relative;">
+                        <canvas id="demandChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills in Demand -->
+            <div class="skills-demand">
+                <h2><i class="fas fa-star"></i> Most Sought-After Skills</h2>
+                <div class="skills-demand-grid">
+                    <div class="demand-category">
+                        <h3><i class="fas fa-code"></i> Technical Skills</h3>
+                        <div class="skill-bars" id="technicalSkills">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                    <div class="demand-category">
+                        <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                        <div class="skill-bars" id="softSkills">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emerging Careers -->
+            <div class="emerging-careers">
+                <h2><i class="fas fa-rocket"></i> Emerging Career Opportunities</h2>
+                <p>Future-proof careers with high growth potential</p>
+                <div class="emerging-grid" id="emergingGrid">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+
+            <!-- Location Insights -->
+            <div class="location-insights">
+                <h2><i class="fas fa-map-marker-alt"></i> Top Job Markets by Location</h2>
+                <div class="locations-grid" id="locationsGrid">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+
+            <!-- Industry Reports -->
+            <div class="industry-reports">
+                <h2><i class="fas fa-file-alt"></i> Industry Insights & Reports</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Tech Industry Report 2024</h3>
+                        <p>Comprehensive analysis of technology sector trends, salaries, and opportunities</p>
+                        <div class="report-stats">
+                            <span><i class="fas fa-chart-line"></i> 45% Growth</span>
+                            <span><i class="fas fa-briefcase"></i> 2.5M Jobs</span>
+                        </div>
+                        <button class="btn btn-outline">View Report</button>
+                    </div>
+                    <div class="report-card">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Healthcare Outlook</h3>
+                        <p>Future of healthcare careers including telemedicine and health informatics</p>
+                        <div class="report-stats">
+                            <span><i class="fas fa-chart-line"></i> 38% Growth</span>
+                            <span><i class="fas fa-briefcase"></i> 1.8M Jobs</span>
+                        </div>
+                        <button class="btn btn-outline">View Report</button>
+                    </div>
+                    <div class="report-card">
+                        <i class="fas fa-robot"></i>
+                        <h3>AI & Machine Learning</h3>
+                        <p>Explosive growth in artificial intelligence and automation careers</p>
+                        <div class="report-stats">
+                            <span><i class="fas fa-chart-line"></i> 52% Growth</span>
+                            <span><i class="fas fa-briefcase"></i> 800K Jobs</span>
+                        </div>
+                        <button class="btn btn-outline">View Report</button>
+                    </div>
+                    <div class="report-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Green Energy Sector</h3>
+                        <p>Sustainability and renewable energy career opportunities</p>
+                        <div class="report-stats">
+                            <span><i class="fas fa-chart-line"></i> 41% Growth</span>
+                            <span><i class="fas fa-briefcase"></i> 1.2M Jobs</span>
+                        </div>
+                        <button class="btn btn-outline">View Report</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="trends-cta">
+                <div class="cta-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Want Personalized Career Recommendations?</h3>
+                    <p>Take our AI-powered career quiz to find the best career path based on your unique skills and interests</p>
+                    <a href="quiz.html" class="btn btn-primary">
+                        <i class="fas fa-brain"></i> Take Career Quiz
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Career Mentor AI</h3>
+                    <p>Empowering students to make informed career decisions with AI-powered guidance and insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="quiz.html">Career Quiz</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="learning-path.html">Learning Path</a></li>
+                        <li><a href="chat.html">AI Mentor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="job-trends.html">Job Trends</a></li>
+                        <li><a href="resume.html">Resume Enhancer</a></li>
+                        <li><a href="#">Career Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Career Mentor AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/job-trends.js"></script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Enhancer - Career Mentor AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Career Mentor AI</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html">Career Quiz</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="learning-path.html">Learning Path</a></li>
+                <li><a href="chat.html">AI Mentor</a></li>
+                <li><a href="job-trends.html">Job Trends</a></li>
+                <li><a href="resume.html" class="active">Resume Enhancer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Resume Section -->
+    <section class="resume-section">
+        <div class="container">
+            <div class="resume-header">
+                <h1><i class="fas fa-file-alt"></i> AI-Powered Resume Enhancer</h1>
+                <p>Get intelligent suggestions to optimize your resume for ATS systems and recruiters</p>
+            </div>
+
+            <!-- Input Section -->
+            <div class="resume-input-section">
+                <div class="input-card">
+                    <h2><i class="fas fa-upload"></i> Input Your Resume Information</h2>
+                    <div class="input-tabs">
+                        <button class="tab-btn active" data-tab="paste">Paste Text</button>
+                        <button class="tab-btn" data-tab="form">Fill Form</button>
+                    </div>
+
+                    <!-- Paste Tab -->
+                    <div class="tab-content active" id="paste-tab">
+                        <label>Paste your resume content or job description:</label>
+                        <textarea 
+                            id="resumeText" 
+                            class="resume-textarea" 
+                            placeholder="Paste your resume content here..."
+                            rows="15"
+                        ></textarea>
+                        <div class="target-role">
+                            <label>Target Job Role (Optional):</label>
+                            <input 
+                                type="text" 
+                                id="targetRole" 
+                                class="input-field" 
+                                placeholder="e.g., Software Engineer, Data Analyst, Product Manager"
+                            >
+                        </div>
+                        <button class="btn btn-primary btn-large" onclick="analyzeResume()">
+                            <i class="fas fa-magic"></i> Analyze & Enhance Resume
+                        </button>
+                    </div>
+
+                    <!-- Form Tab -->
+                    <div class="tab-content" id="form-tab">
+                        <form id="resumeForm" class="resume-form">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" class="input-field" placeholder="John Doe">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="input-field" placeholder="john@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" class="input-field" placeholder="+1 234 567 8900">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Professional Summary</label>
+                                <textarea class="input-field" rows="4" placeholder="Brief summary of your professional background..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Skills (comma-separated)</label>
+                                <input type="text" class="input-field" placeholder="Python, JavaScript, React, SQL...">
+                            </div>
+                            <div class="form-group">
+                                <label>Work Experience</label>
+                                <textarea class="input-field" rows="6" placeholder="Job Title | Company | Dates&#10;• Achievement 1&#10;• Achievement 2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Education</label>
+                                <textarea class="input-field" rows="3" placeholder="Degree | University | Year"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-large" onclick="analyzeFormResume()">
+                                <i class="fas fa-magic"></i> Analyze Resume
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Results -->
+            <div class="resume-results" id="resumeResults" style="display: none;">
+                <!-- Overall Score -->
+                <div class="score-card">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="20"/>
+                            <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none" stroke="url(#gradient)" stroke-width="20" 
+                                    stroke-dasharray="565.48" stroke-dashoffset="141.37" transform="rotate(-90 100 100)"/>
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="score-text">
+                            <span class="score-value" id="overallScore">75</span>
+                            <span class="score-label">Overall Score</span>
+                        </div>
+                    </div>
+                    <div class="score-details">
+                        <h3>Resume Analysis Complete</h3>
+                        <p>Your resume has been analyzed against industry standards and ATS requirements</p>
+                        <div class="score-breakdown">
+                            <div class="breakdown-item">
+                                <span>Content Quality</span>
+                                <div class="breakdown-bar">
+                                    <div class="breakdown-fill" style="width: 80%"></div>
+                                </div>
+                                <strong>80%</strong>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Keyword Optimization</span>
+                                <div class="breakdown-bar">
+                                    <div class="breakdown-fill" style="width: 65%"></div>
+                                </div>
+                                <strong>65%</strong>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Format & Structure</span>
+                                <div class="breakdown-bar">
+                                    <div class="breakdown-fill" style="width: 90%"></div>
+                                </div>
+                                <strong>90%</strong>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>ATS Compatibility</span>
+                                <div class="breakdown-bar">
+                                    <div class="breakdown-fill" style="width: 70%"></div>
+                                </div>
+                                <strong>70%</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggestions Grid -->
+                <div class="suggestions-grid">
+                    <!-- Keywords -->
+                    <div class="suggestion-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-key"></i> Missing Keywords</h3>
+                            <span class="badge badge-warning">High Priority</span>
+                        </div>
+                        <p>Add these industry-relevant keywords to improve ATS compatibility:</p>
+                        <div class="keywords-list" id="missingKeywords">
+                            <!-- Dynamic content -->
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="applyKeywords()">
+                            <i class="fas fa-plus"></i> Apply Suggestions
+                        </button>
+                    </div>
+
+                    <!-- Improvements -->
+                    <div class="suggestion-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-lightbulb"></i> Content Improvements</h3>
+                            <span class="badge badge-info">Recommended</span>
+                        </div>
+                        <div class="improvements-list" id="improvementsList">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+
+                    <!-- Strengths -->
+                    <div class="suggestion-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-check-circle"></i> Your Strengths</h3>
+                            <span class="badge badge-success">Good Job!</span>
+                        </div>
+                        <div class="strengths-list" id="strengthsList">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+
+                    <!-- Action Items -->
+                    <div class="suggestion-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-tasks"></i> Priority Actions</h3>
+                        </div>
+                        <div class="actions-list" id="actionsList">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced Resume Preview -->
+                <div class="enhanced-preview">
+                    <div class="preview-header">
+                        <h3><i class="fas fa-eye"></i> Enhanced Resume Preview</h3>
+                        <div class="preview-actions">
+                            <button class="btn btn-outline" onclick="copyEnhanced()">
+                                <i class="fas fa-copy"></i> Copy Text
+                            </button>
+                            <button class="btn btn-primary" onclick="downloadEnhanced()">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="preview-content" id="enhancedPreview">
+                        <!-- Dynamic enhanced resume content -->
+                    </div>
+                </div>
+
+                <!-- Additional Resources -->
+                <div class="resume-resources">
+                    <h3><i class="fas fa-book"></i> Resume Writing Resources</h3>
+                    <div class="resources-grid">
+                        <div class="resource-item">
+                            <i class="fas fa-file-alt"></i>
+                            <h4>Resume Templates</h4>
+                            <p>Professional templates for various industries</p>
+                            <a href="#" class="resource-link">Browse Templates <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-video"></i>
+                            <h4>Video Tutorials</h4>
+                            <p>Learn resume best practices from experts</p>
+                            <a href="#" class="resource-link">Watch Videos <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book-open"></i>
+                            <h4>Writing Guide</h4>
+                            <p>Comprehensive guide to resume writing</p>
+                            <a href="#" class="resource-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-comments"></i>
+                            <h4>Get Expert Help</h4>
+                            <p>Chat with our AI mentor for personalized advice</p>
+                            <a href="chat.html" class="resource-link">Start Chat <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Career Mentor AI</h3>
+                    <p>Empowering students to make informed career decisions with AI-powered guidance and insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="quiz.html">Career Quiz</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="learning-path.html">Learning Path</a></li>
+                        <li><a href="chat.html">AI Mentor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="job-trends.html">Job Trends</a></li>
+                        <li><a href="resume.html">Resume Enhancer</a></li>
+                        <li><a href="#">Career Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Career Mentor AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/resume.js"></script>
+</body>
+</html>

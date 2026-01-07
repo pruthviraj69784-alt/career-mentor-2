@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Path - Career Mentor AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Career Mentor AI</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html">Career Quiz</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="learning-path.html" class="active">Learning Path</a></li>
+                <li><a href="chat.html">AI Mentor</a></li>
+                <li><a href="job-trends.html">Job Trends</a></li>
+                <li><a href="resume.html">Resume Enhancer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Learning Path Section -->
+    <section class="learning-path-section">
+        <div class="container">
+            <div class="path-header">
+                <div>
+                    <h1><i class="fas fa-road"></i> Your Personalized Learning Path</h1>
+                    <p id="pathDescription">AI-generated roadmap to achieve your career goals</p>
+                </div>
+                <div class="path-controls">
+                    <select id="careerSelect" class="career-select">
+                        <option value="">Select Career Path</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="generatePath()">
+                        <i class="fas fa-magic"></i> Generate Path
+                    </button>
+                </div>
+            </div>
+
+            <!-- Career Overview -->
+            <div class="career-overview" id="careerOverview" style="display: none;">
+                <div class="overview-card">
+                    <div class="overview-icon" id="careerIcon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h2 id="careerTitle">Software Engineer</h2>
+                        <p id="careerDesc">Build innovative software solutions and applications</p>
+                        <div class="overview-stats">
+                            <div class="overview-stat">
+                                <i class="fas fa-dollar-sign"></i>
+                                <div>
+                                    <strong id="avgSalary">$85,000 - $150,000</strong>
+                                    <span>Average Salary</span>
+                                </div>
+                            </div>
+                            <div class="overview-stat">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong id="timeEstimate">12-18 months</strong>
+                                    <span>Time to Career Ready</span>
+                                </div>
+                            </div>
+                            <div class="overview-stat">
+                                <i class="fas fa-chart-line"></i>
+                                <div>
+                                    <strong id="demandLevel">Very High</strong>
+                                    <span>Market Demand</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Path Timeline -->
+            <div class="path-timeline" id="pathTimeline" style="display: none;">
+                <div class="timeline-header">
+                    <h2>Your Learning Roadmap</h2>
+                    <div class="timeline-progress">
+                        <span>Overall Progress: <strong id="overallProgress">0%</strong></span>
+                    </div>
+                </div>
+
+                <div class="timeline" id="timelineContent">
+                    <!-- Dynamic timeline content -->
+                </div>
+            </div>
+
+            <!-- Resource Library -->
+            <div class="resource-library" id="resourceLibrary" style="display: none;">
+                <h2><i class="fas fa-book"></i> Recommended Learning Resources</h2>
+                <div class="resource-filters">
+                    <button class="filter-btn active" data-filter="all">All Resources</button>
+                    <button class="filter-btn" data-filter="course">Courses</button>
+                    <button class="filter-btn" data-filter="book">Books</button>
+                    <button class="filter-btn" data-filter="certification">Certifications</button>
+                    <button class="filter-btn" data-filter="tutorial">Tutorials</button>
+                </div>
+                <div class="resources-grid" id="resourcesGrid">
+                    <!-- Dynamic resources content -->
+                </div>
+            </div>
+
+            <!-- Skills Checklist -->
+            <div class="skills-checklist" id="skillsChecklist" style="display: none;">
+                <h2><i class="fas fa-check-circle"></i> Required Skills Checklist</h2>
+                <div class="checklist-categories" id="checklistContent">
+                    <!-- Dynamic checklist content -->
+                </div>
+            </div>
+
+            <!-- Action Plan -->
+            <div class="action-plan" id="actionPlan" style="display: none;">
+                <div class="plan-card">
+                    <h2><i class="fas fa-calendar-check"></i> Your 30-Day Action Plan</h2>
+                    <p>Start your journey with these immediate next steps</p>
+                    <div class="action-items" id="actionItems">
+                        <!-- Dynamic action items -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="path-cta">
+                <div class="cta-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Need Guidance on Your Learning Path?</h3>
+                    <p>Chat with our AI Mentor to get personalized recommendations and answers to your questions</p>
+                    <a href="chat.html" class="btn btn-primary">
+                        <i class="fas fa-robot"></i> Talk to AI Mentor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Career Mentor AI</h3>
+                    <p>Empowering students to make informed career decisions with AI-powered guidance and insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="quiz.html">Career Quiz</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="learning-path.html">Learning Path</a></li>
+                        <li><a href="chat.html">AI Mentor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="job-trends.html">Job Trends</a></li>
+                        <li><a href="resume.html">Resume Enhancer</a></li>
+                        <li><a href="#">Career Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Career Mentor AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/learning-path.js"></script>
+</body>
+</html>
